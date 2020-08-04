@@ -1,0 +1,22 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-job-trace-dev-111240-authRole",
+            "UnauthRoleArn": "arn:aws:iam::048105772632:role/amplify-job-trace-dev-111240-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::048105772632:role/amplify-job-trace-dev-111240-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-job-trace-dev-111240-deployment",
+            "UnauthRoleName": "amplify-job-trace-dev-111240-unauthRole",
+            "StackName": "amplify-job-trace-dev-111240",
+            "StackId": "arn:aws:cloudformation:us-east-1:048105772632:stack/amplify-job-trace-dev-111240/239d2a00-bf9b-11ea-91b9-0a87c278b5b5",
+            "AmplifyAppId": "d12sph177brohj"
+        },
+        "categories": {
+            "auth": {
+                "jobtrace444f1c1b": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"817541287728-1s03agnm6vcisv1p374qoe7hbgbhl580.apps.googleusercontent.com\",\"client_secret\":\"lm-X-7f8ErYaN4cZ1EvZxoAJ\"},{\"ProviderName\":\"LoginWithAmazon\",\"client_id\":\"amzn1.application-oa2-client.b9221cfd305c46eaabf559f51d086ab1\",\"client_secret\":\"243a6ed6aa4adbcb7195a350c54fbc3eed9c7f1922228a20e6c9390909e08cae\"}]"
+                }
+            }
+        }
+    }
+}

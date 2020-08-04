@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "apijobtrace",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authjobtrace444f1c1b",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

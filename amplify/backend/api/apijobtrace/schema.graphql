@@ -1,0 +1,133 @@
+enum KindE {
+  APPLY
+  FOLLOWUP
+  PREPCOVERLETTER
+  PREPRESUME
+  PREPFORINTERVIEW
+  REACHOUT
+  PHONESCREEN
+  PHONEINTERVIEW
+  VIDEOINTERVIEW
+  ONSITEINTERVIEW
+  OFFERRECEIVED
+  ACCEPTOFFER
+  DECLINEOFFER
+  REJECTED
+  SENDTHANKYOU
+  EMAIL
+  MEETING
+  PHONECALL
+  VIDEOCALL
+  GETREFERENCE
+  SENDAVAILABILITY
+  ASSIGMENT
+  NETWORKINGEVENT
+  OTHER
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+}
+
+type Job
+  @model
+  @key(name: "byUserJob", fields: ["userId", "id"])
+  @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  userId: ID!
+  companyId: ID
+  activities: [Activity] @connection(keyName: "byJob", fields: ["id"])
+  title: String!
+  salary: Float
+  postedDate: AWSDateTime
+  deadline: AWSDateTime
+  description: String #or link
+  remote: Boolean
+  source: String
+  location: String
+  referredBy: String
+  benefits: [String]
+  perks: [String]
+  keywords: [String]
+  color: String
+  status: String
+}
+
+type Activity
+  @model
+  @key(name: "byJob", fields: ["jobId", "dateStart"])
+  @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  jobId: ID!
+  kind: KindE
+  title: String
+  notes: String
+  dateStart: AWSDateTime
+  dateEnd: AWSDateTime
+}
+
+type Company
+  @model
+  @key(name: "byUserCompany", fields: ["userId", "id"])
+  @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  userId: ID!
+  type: String
+  website: AWSURL
+  industry: String
+  funded: AWSDateTime
+  ticker: String
+  address: String
+  country: String
+  alexaGlobal: String
+  alexaUS: String
+  logo: S3Object
+}
+
+type Contact
+  @model
+  @key(name: "byUserContact", fields: ["userId", "id"])
+  @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  company: Company @connection
+  jobId: ID
+  userId: ID!
+  name: String
+  lastName: String
+  title: String
+  address: String
+  phone: [String]
+  email: [String]
+  social: [String]
+  recruiter: Boolean
+  interviewer: Boolean
+  avatar: S3Object
+}
+
+type TakeAway
+  @key(name: "byUserTakeAway", fields: ["userId", "id"])
+  @model
+  @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  userId: ID!
+  title: String
+  description: String
+  importance: String # 1 to 10
+  industry: String
+  role: String #job title + role
+  createdAt: AWSDateTime
+}
+
+type User @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  username: String
+  name: String
+  lastName: String
+  avatar: S3Object
+  jobs: [Job] @connection(keyName: "byUserJob", fields: ["id"])
+  contacts: [Contact] @connection(keyName: "byUserContact", fields: ["id"])
+  takeAways: [TakeAway] @connection(keyName: "byUserTakeAway", fields: ["id"])
+  companies: [Company] @connection(keyName: "byUserCompany", fields: ["id"])
+}

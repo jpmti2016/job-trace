@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-checkbox {
+    @apply absolute h-px w-px hidden;
+
+}
+
+.custom-checkbox-label {
+    @apply block relative py-0 px-6;
+}
+.custom-checkbox-label::before {
+    @apply empty relative inline-block mr-2 w-5 h-5 bg-white;
+}
+
+.custom-checkbox:checked + .custom-checkbox-label::before {
+    @apply bg-blue-700;
+}
+.custom-checkbox:checked + .custom-checkbox-label::after {
+    @apply empty absolute top-1 left-7 border-l-2 border-b-2 border-gray-200 h-2 w-3 transform -rotate-45;
+}
+.custom-checkbox:focus + .custom-checkbox-label::before {
+    @apply shadow-sm outline-none shadow-outline;
+}
+
+
+
+

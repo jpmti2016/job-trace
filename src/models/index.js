@@ -1,0 +1,43 @@
+// @ts-check
+import { initSchema } from '@aws-amplify/datastore';
+import { schema } from './schema';
+
+const KindE = {
+  "APPLY": "APPLY",
+  "FOLLOWUP": "FOLLOWUP",
+  "PREPCOVERLETTER": "PREPCOVERLETTER",
+  "PREPRESUME": "PREPRESUME",
+  "PREPFORINTERVIEW": "PREPFORINTERVIEW",
+  "REACHOUT": "REACHOUT",
+  "PHONESCREEN": "PHONESCREEN",
+  "PHONEINTERVIEW": "PHONEINTERVIEW",
+  "VIDEOINTERVIEW": "VIDEOINTERVIEW",
+  "ONSITEINTERVIEW": "ONSITEINTERVIEW",
+  "OFFERRECEIVED": "OFFERRECEIVED",
+  "ACCEPTOFFER": "ACCEPTOFFER",
+  "DECLINEOFFER": "DECLINEOFFER",
+  "REJECTED": "REJECTED",
+  "SENDTHANKYOU": "SENDTHANKYOU",
+  "EMAIL": "EMAIL",
+  "MEETING": "MEETING",
+  "PHONECALL": "PHONECALL",
+  "VIDEOCALL": "VIDEOCALL",
+  "GETREFERENCE": "GETREFERENCE",
+  "SENDAVAILABILITY": "SENDAVAILABILITY",
+  "ASSIGMENT": "ASSIGMENT",
+  "NETWORKINGEVENT": "NETWORKINGEVENT",
+  "OTHER": "OTHER"
+};
+
+const { Job, Activity, Company, Contact, TakeAway, User, S3Object } = initSchema(schema);
+
+export {
+  Job,
+  Activity,
+  Company,
+  Contact,
+  TakeAway,
+  User,
+  KindE,
+  S3Object
+};

@@ -1,0 +1,11 @@
+input[type="checkbox"] {
+  position: absolute;
+}
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding: 0 1.5rem;
+}
+
+
