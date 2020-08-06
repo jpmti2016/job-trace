@@ -52,7 +52,7 @@ const JobDetail = ({ job }) => {
         </div>
         <div className="sm:flex sm:flex-col mt-12 sm:ml-20 sm:w-full">
           <div className="flex flex-col sm:justify-start">
-            <div className="flex flex-col justify-start sm:flex-row  text-blue-900">
+            <div className="flex flex-col justify-start sm:flex-row text-blue-900">
               <h2 className="text-2xl font-bold leading-7">
                 Front-End Software Engineer
               </h2>

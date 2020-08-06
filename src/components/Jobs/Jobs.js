@@ -18,9 +18,11 @@ const getGitHubJobs = async (search) => {
 const Jobs = ({ jobs }) => {
   const [search, setSearch] = useState("");
   const [gitHubJobs, setGitHubJobs] = useState([]);
+
   useEffect(() => {
     getGitHubJobs(search);
   }, [search]);
+
   return (
     <div className="flex flex-col p-3 sm:px-32 sm:py-0">
       <SearchForm setSearch={setSearch} />
