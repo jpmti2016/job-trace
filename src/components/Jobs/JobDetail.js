@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import img from "./backgroundImg_90.png";
 
-const JobDetail = ({ job }) => {
+const JobDetail = (props) => {
+  const job = props.location.state.job;
+  const posted = props.location.state.posted;
+
   return (
     <div className="pl-3 pr-5 sm:px-32 sm:py-0">
       <div className="flex flex-col sm:flex-row">
         <div className="flex flex-col sm:w-1/3">
-          {JSON.stringify(job)}
-
           <Link
             to="/"
             className="flex items-center text-blue-600 hover:text-blue-800"
@@ -32,30 +32,17 @@ const JobDetail = ({ job }) => {
           <h3 className="font-bold uppercase text-gray-700 pt-10">
             How to apply
           </h3>
-
-          <p className="text-sm pt-4">
-            Please email a copy of your resume and online portfolio to{" "}
-            <a
-              href="mailto:wes@kasisto.com"
-              className="text-blue-600 hover:text-blue-800"
-            >
-              wes@kasisto.com
-            </a>{" "}
-            & CC{" "}
-            <a
-              href="mailto:eric@kasisto.com"
-              className="text-blue-600 hover:text-blue-800"
-            >
-              eric@kasisto.com
-            </a>
-          </p>
+          <div
+            className="how-to-apply"
+            dangerouslySetInnerHTML={{
+              __html: job.how_to_apply || "",
+            }}
+          ></div>
         </div>
         <div className="sm:flex sm:flex-col mt-12 sm:ml-20 sm:w-full">
           <div className="flex flex-col sm:justify-start">
             <div className="flex flex-col justify-start sm:flex-row text-blue-900">
-              <h2 className="text-2xl font-bold leading-7">
-                Front-End Software Engineer
-              </h2>
+              <h2 className="text-2xl font-bold leading-7">{job.title}</h2>
               <a href="https://highalpha.com/job/?gh_jid=2245150&gh_src=fb83cbe11us">
                 <span className="mt-4 sm:ml-4 sm:mt-0 p-1 border border-blue-900 rounded text-xs font-bold hover:text-blue-700 hover:border-blue-700">
                   Full Time
@@ -74,18 +61,20 @@ const JobDetail = ({ job }) => {
                 />
               </svg>
 
-              <p className="ml-1 text-xs leading-none align-top">5 Days ago</p>
+              <p className="ml-1 text-xs leading-none align-top">
+                {posted || ""}
+              </p>
             </div>
           </div>
 
           <div className="mt-12 sm:mt-8 flex flex-row">
             <img
-              src={img}
+              src={job.company_logo}
               className="h-10 w-10 object-cover rounded-lg"
               alt=""
             />
             <div className="city flex flex-col items-start text-xs leading-none align-top ml-3">
-              <p className="font-bold text-lg leading-none">Kasito</p>
+              <p className="font-bold text-lg leading-none">{job.company}</p>
               <div className="flex items-center mt-2 text-gray-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -98,34 +87,19 @@ const JobDetail = ({ job }) => {
                   />
                 </svg>
 
-                <p className="ml-1 text-xs leading-none align-top">{`New York`}</p>
+                <p className="ml-1 text-xs leading-none align-top">
+                  {job.location}
+                </p>
               </div>
             </div>
           </div>
 
-          <p className="mt-8 text-base leading-normal text-left">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut,
-            quisquam.
-          </p>
-          <p className="mt-8 text-base leading-normal text-left">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-            aliquam iure accusamus inventore optio quod, ipsum laudantium, illo
-            ab illum nobis laborum fugit nemo quas saepe. Maxime, dolores
-            doloremque tempore perspiciatis quas quae, veniam similique nesciunt
-            qui necessitatibus quidem autem officia hic cupiditate non tempora
-            corporis atque? Explicabo maiores nisi odio aliquam distinctio nam
-            temporibus id, labore ad voluptatem optio dolore minima. Sit unde
-            minus nulla obcaecati quis voluptatibus consequatur omnis iure magni
-            beatae ducimus libero vel impedit officiis labore soluta rerum
-            reiciendis, tenetur eligendi eaque. Voluptas, laudantium aliquid
-            molestiae iste mollitia repellendus illo in delectus voluptatem
-            assumenda dolores cupiditate, nemo modi quasi eveniet enim rerum
-            quae nostrum a cumque neque magni vero autem! Modi quos, eius
-            accusantium nemo reprehenderit ratione ipsum, accusamus quaerat
-            impedit numquam est repellendus enim, quasi aliquam laudantium
-            voluptatibus velit animi nobis laborum iusto aut eligendi amet vel!
-            Incidunt maiores vel, expedita minima rerum unde optio.
-          </p>
+          <div
+            className="description"
+            dangerouslySetInnerHTML={{
+              __html: job.description || "",
+            }}
+          ></div>
         </div>
       </div>
     </div>

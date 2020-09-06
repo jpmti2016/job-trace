@@ -23200,6 +23200,42 @@ video {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
 
+.how-to-apply {
+  font-size: 0.875rem;
+  padding-top: 1rem;
+}
+
+div[class="how-to-apply"] a {
+  --text-opacity: 1;
+  color: #3182ce;
+  color: rgba(49, 130, 206, var(--text-opacity));
+}
+
+div[class="how-to-apply"] a:hover {
+  --text-opacity: 1;
+  color: #2c5282;
+  color: rgba(44, 82, 130, var(--text-opacity));
+}
+
+div[class="description"] p {
+  margin-top: 2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+div[class="description"] ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+div[class="description"] ul li {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  list-style-type: disc;
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;
@@ -112243,7 +112279,3 @@ video {
     transition-delay: 1000ms;
   }
 }
-
-
-
-

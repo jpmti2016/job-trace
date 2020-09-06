@@ -1,7 +1,12 @@
 import React from "react";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
 import { Route, Link, useLocation, useRouteMatch } from "react-router-dom";
 import img from "./backgroundImg_90.png";
 import JobDetail from "./JobDetail";
+
+dayjs.extend(relativeTime);
 
 const Job = ({ job }) => {
   const location = useLocation();
@@ -11,22 +16,35 @@ const Job = ({ job }) => {
   console.log("location", location);
   console.log("job", job);
 
+  const today = dayjs();
+  const createdAt = job ? job.created_at : "";
+  const timeAgo = dayjs(createdAt);
   return (
     <div>
-      <div className="flex justify-between bg-white p-3 w-full shadow-sm mt-6 sm:mt-10">
-        <img src={img} className="h-20 w-20 object-cover rounded-lg" alt="" />
+      <div className="flex justify-between bg-white p-3 w-full %">
+        <img
+          src={job.company_logo}
+          className="h-20 w-20 object-cover rounded-lg"
+          alt=""
+        />
 
         <div className="card-content text-blue-900 ml-4 sm:w-full">
           <h2 className="text-xs font-bold leading-none">
-            {job.id.slice(job.id.length / 2, -1)}
+            {/* {job.id.slice(job.id.length / 2, -1)} */}
+            {job.company}
           </h2>
           <h3 className="mt-2 text-base leading-tight align-top sm:text-lg">
             {job.title}
           </h3>
           <div className="footer text-xs leading-none align-top mt-3 pb-2 sm:flex sm:justify-between w-full">
-            <Link to={{ pathname: `/job/${job.id}`, state: { job } }}>
+            <Link
+              to={{
+                pathname: `/job/${job.id}`,
+                state: { job, posted: job ? timeAgo.from(today) : "" },
+              }}
+            >
               <span className="mt-4 p-1 border border-blue-900 rounded text-xs font-bold hover:text-blue-700 hover:border-blue-700">
-                {job.salary.toFixed()}
+                {job.type}
               </span>
             </Link>
 
@@ -43,10 +61,7 @@ const Job = ({ job }) => {
                   />
                 </svg>
 
-                <p className="ml-1 text-xs leading-none align-top">{`${job.perks[1].slice(
-                  0,
-                  -6
-                )}`}</p>
+                <p className="ml-1 text-xs leading-none align-top">{`${job.location}`}</p>
               </div>
               <div className="flex  posted ml-2 text-xs items-center">
                 <svg
@@ -61,7 +76,7 @@ const Job = ({ job }) => {
                 </svg>
 
                 <p className="ml-1 text-xs leading-none align-top">
-                  2 Days ago
+                  {job && timeAgo.from(today)}
                 </p>
               </div>
             </div>
