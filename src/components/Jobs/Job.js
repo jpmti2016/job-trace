@@ -2,20 +2,11 @@ import React from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
-import { Route, Link, useLocation, useRouteMatch } from "react-router-dom";
-import img from "./backgroundImg_90.png";
-import JobDetail from "./JobDetail";
+import { Link } from "react-router-dom";
 
 dayjs.extend(relativeTime);
 
 const Job = ({ job }) => {
-  const location = useLocation();
-  const { path, url } = useRouteMatch();
-  console.log("path", path);
-  console.log("url", url);
-  console.log("location", location);
-  console.log("job", job);
-
   const today = dayjs();
   const createdAt = job ? job.created_at : "";
   const timeAgo = dayjs(createdAt);
