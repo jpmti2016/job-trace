@@ -46,3 +46,7 @@ div[class="description"] ul {
 div[class="description"] ul li {
   @apply mt-2 font-medium list-disc;
 }
+
+ul[class="pagination"] li:last-of-type {
+  @apply mr-0;
+}

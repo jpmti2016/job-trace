@@ -12,7 +12,7 @@ module.exports = {
         "6": "1.5rem",
         "7": "1.75rem",
         "8": "2rem",
-        "10": "2.5rem"
+        "10": "2.5rem",
       },
       spacing: {
         "1/2": "50%",
@@ -43,17 +43,20 @@ module.exports = {
         "11/12": "91.666667%",
       },
       pseudo: {
-        'before': 'before',
-        'after': 'after',
-        'not-first': 'not(:first-child)'
-      }
+        "before": "before",
+        "after": "after",
+        "not-first": "not(:first-child)",
+      },
     },
   },
   variants: {
-    empty: ['before', 'after']
+    empty: ["before", "after"],
+    backgroundColor: ["responsive", "hover", "focus", "active"],
+    textColor: ["responsive", "hover", "focus", "active"],
+    fill: ["responsive", "hover", "focus"],
   },
   plugins: [
     require("@tailwindcss/custom-forms"),
-    require("tailwindcss-pseudo")({empty: true})
+    require("tailwindcss-pseudo")({ empty: true }),
   ],
 };

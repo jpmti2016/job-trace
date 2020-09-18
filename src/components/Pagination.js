@@ -1,29 +1,51 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { li } from "react-router-dom";
 import usePagination from "./usePagination";
 
-const Pagination = (props) => {
+const Pagination = ({
+  currentPage,
+  setCurrentPage,
+  numberOfItems,
+  numberOfButtons,
+  itemsPerPage,
+}) => {
   const params = {
-    numberOfItems: 50,
-    itemsPerPage: 5,
-    currentPage: 9,
-    numberOfButtons: 1,
+    numberOfItems,
+    itemsPerPage, //pagesize
+    currentPage, //pageNow
+    numberOfButtons,
   };
-  const pagination = usePagination(params);
+  const { buttons } = usePagination(params);
 
-  console.log(pagination);
-  const paginationButtons = pagination.buttons.map((item) => (
-    <Link
+  const handleClick = (page) => {
+    setCurrentPage(page);
+  };
+
+  const paginationButtons = buttons?.map((item) => (
+    <li
       key={`p-${Math.random()}`}
-      className="p-2 mr-3 border border-gray-700 rounded flex flex-row items-center justify-center"
+      className={`p-2 mr-3 border border-gray-700 rounded flex flex-row items-center justify-center ${
+        item === currentPage
+          ? "bg-blue-700 text-blue-200 active:bg-blue-900 active:text-blue-200"
+          : "hover:border-blue-700 hover:text-blue-700"
+      }`}
+      onClick={() => handleClick(item)}
     >
       {item}
-    </Link>
+    </li>
   ));
 
   return (
-    <div className="hidden sm:flex sm:flex-row sm:justify-end mt-8">
-      <Link className="p-2 mr-3 border border-gray-700 rounded flex flex-row items-center justify-center">
+    <ul className="pagination hidden sm:flex sm:flex-row sm:justify-end mt-8">
+      <li
+        className={`p-2 mr-3 border border-gray-700 rounded flex flex-row items-center justify-center ${
+          buttons && buttons[0] === currentPage
+            ? "hover:bg-gray-300 hover:border-gray-100 hover:text-gray-100 cursor-not-allowed hidden"
+            : "hover:text-blue-700 hover:border-blue-700"
+        } active:bg-blue-900 
+        `}
+        onClick={() => handleClick(currentPage - 1)}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -34,9 +56,16 @@ const Pagination = (props) => {
             d="M5.41 11H21a1 1 0 0 1 0 2H5.41l5.3 5.3a1 1 0 0 1-1.42 1.4l-7-7a1 1 0 0 1 0-1.4l7-7a1 1 0 0 1 1.42 1.4L5.4 11z"
           />
         </svg>
-      </Link>
+      </li>
       {paginationButtons}
-      <Link className="p-2 border border-gray-700 rounded flex flex-row items-center justify-center">
+      <li
+        className={`p-2 border border-gray-700 rounded flex flex-row items-center justify-center ${
+          buttons?.reverse()[0] === currentPage
+            ? "hover:bg-gray-300 hover:border-gray-100 hover:text-gray-100 cursor-not-allowed hidden"
+            : "hover:text-blue-700 hover:border-blue-700"
+        }`}
+        onClick={() => handleClick(currentPage + 1)}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -47,8 +76,8 @@ const Pagination = (props) => {
             d="M18.59 13H3a1 1 0 0 1 0-2h15.59l-5.3-5.3a1 1 0 1 1 1.42-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.42-1.4l5.3-5.3z"
           />
         </svg>
-      </Link>
-    </div>
+      </li>
+    </ul>
   );
 };
 

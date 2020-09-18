@@ -4,7 +4,7 @@ const usePagination = ({
   currentPage,
   numberOfButtons,
 }) => {
-  const numberOfPages = Math.ceil(numberOfItems / itemsPerPage);
+  const numberOfPages = Math.ceil(numberOfItems / itemsPerPage); //totalPages
 
   if (currentPage > numberOfPages || currentPage < 1)
     return { pagination: [], currentPage };

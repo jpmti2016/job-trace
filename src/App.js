@@ -33,7 +33,6 @@ function App() {
   const [user, setUser] = useState({});
   const [jobs, setJobs] = useState([]);
   const [job, setJob] = useState({});
-  // const { path } = useRouteMatch();
 
   const fetchJobs = async () => {
     const fjobs = await DataStore.query(Job);
@@ -80,7 +79,9 @@ function App() {
           <Route
             exact
             path="/"
-            render={(props) => <Jobs {...props} jobs={jobs} />}
+            render={(props) => (
+              <Jobs {...props} jobs={jobs} setJobs={setJobs} />
+            )}
           />
           <Route
             path={`/job/:jobId`}
